@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Square from '../Square';
 
-export default class Square extends Component {
+export default class Board extends Component {
 
   renderSquare(i) {
-    return <Square />;
+    return <Square value={i}/>;
   }
 
   render() {

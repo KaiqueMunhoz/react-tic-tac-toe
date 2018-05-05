@@ -11,8 +11,16 @@ export default class Board extends Component {
     }
   }
 
+  handleClick(i) {
+    const squares = [... this.state.squares];
+    squares[i] = 'X';
+    this.setState({squares});
+  }
+
   renderSquare(i) {
-    return <Square value={this.state.squares[i]}/>;
+    return (
+      <Square value={this.state.squares[i]} onClick={() => this.handleClick(i)}/>
+    );
   }
 
   render() {

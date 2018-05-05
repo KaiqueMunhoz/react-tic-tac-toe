@@ -3,52 +3,20 @@ import React, { Component } from 'react';
 //Components
 import Square from '../Square';
 
-//Helpers
-import calculateWinner from '../../helpers/calculateWinner'
-
 
 export default class Board extends Component {
 
-  constructor() {
-    super();
-
-    this.state = {
-      squares: Array(9).fill(null),
-      xIsNext: true
-    }
-  }
-
-  handleClick(i) {
-    const squares = [...this.state.squares];
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      squares: squares,
-      xIsNext: !this.state.xIsNext
-    });
-  }
-
   renderSquare(i) {
     return (
-      <Square value={this.state.squares[i]} onClick={() => this.handleClick(i)}/>
+      <Square value={this.props.squares[i]}
+      onClick={() => this.props.onClick(i)}/>
     );
   }
 
   render() {
-    let status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
-    const winner = calculateWinner(this.state.squares);
-    
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    }
 
     return (
       <div>
-        <div className="status">{status}</div>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}

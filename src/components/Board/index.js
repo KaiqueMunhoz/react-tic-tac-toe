@@ -3,8 +3,16 @@ import Square from '../Square';
 
 export default class Board extends Component {
 
+  constructor() {
+    super();
+
+    this.state = {
+      squares: Array(9).fill(null)
+    }
+  }
+
   renderSquare(i) {
-    return <Square value={i}/>;
+    return <Square value={this.state.squares[i]}/>;
   }
 
   render() {
